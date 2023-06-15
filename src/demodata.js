@@ -6,7 +6,7 @@ export const data = [
     price: { amount: 100, currency: "dollar" },
     rate: 4.6,
     description: `Lorem ipsum, dolor sit amet consectetur a
-    exercitationem non!"`,
+    exercitationem nfdsfdsfgsgftdsfdaddFSDSdfdason!"`,
   },
   {
     pic: "https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",

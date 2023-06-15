@@ -7,7 +7,7 @@ import photoPlaceholder from "/photo_placeholder.jpg";
 export default function OneProduct({ item }) {
   const navigate = useNavigate();
 
-  const loading = true;
+  const loading = false;
   return (
     <>
       {loading ? (
