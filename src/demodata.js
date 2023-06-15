@@ -5,9 +5,7 @@ export const data = [
     name: "item1",
     price: { amount: 100, currency: "dollar" },
     rate: 4.6,
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, eveniet est.
-    Necessitatibus sint, deleniti quae, neque ratione facilis blanditiis
-    accusantium excepturi possimus, illo soluta at repellendus odio accusamus
+    description: `Lorem ipsum, dolor sit amet consectetur a
     exercitationem non!"`,
   },
   {

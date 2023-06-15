@@ -1,11 +1,12 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 export default function Header() {
+  const userAuth = false;
   return (
     <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-      <Container >
+      <Container>
         <LinkContainer to={"/"}>
           <Navbar.Brand>E-Commerce</Navbar.Brand>
         </LinkContainer>
@@ -24,25 +25,31 @@ export default function Header() {
                 <span className="mx-2"> Cart</span>{" "}
               </Nav.Link>
             </LinkContainer>
-            <LinkContainer to={"/Login"}>
-              <Nav.Link>
-                <i className="fas fa-user" />{" "}
-                <span className="mx-2"> Login</span>
-              </Nav.Link>
-            </LinkContainer>
-            <LinkContainer to={"/SignUp"}>
-              <Nav.Link>
-                <i className="fas fa-solid fa-address-card" />{" "}
-                <span className="mx-2"> Sign-Up</span>{" "}
-              </Nav.Link>
-            </LinkContainer>
+
             <LinkContainer to={"/Settings"}>
               <Nav.Link>
                 <i className="fas fa-solid fa-gears" />{" "}
                 <span className="mx-2"> Settings</span>{" "}
               </Nav.Link>
             </LinkContainer>
+            {!userAuth && (
+              <>
+                <LinkContainer to={"/Login"}>
+                  <Nav.Link>
+                    <i className="fas fa-user" />{" "}
+                    <span className="mx-2"> Login</span>
+                  </Nav.Link>
+                </LinkContainer>
+                <LinkContainer to={"/SignUp"}>
+                  <Nav.Link>
+                    <i className="fas fa-solid fa-address-card" />{" "}
+                    <span className="mx-2"> Sign-Up</span>{" "}
+                  </Nav.Link>
+                </LinkContainer>
+              </>
+            )}
           </Nav>
+          {userAuth && <Button>Logout</Button>}
         </Navbar.Collapse>
       </Container>
     </Navbar>
