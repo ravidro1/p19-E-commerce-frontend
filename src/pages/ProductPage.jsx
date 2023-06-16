@@ -34,7 +34,6 @@ export default function ProductPage() {
             <h3>
               {state.price.amount} {state.price.currency}
             </h3>
-            {/* <h6>rate {state.rate}</h6> */}
             <Rating rate={2.9} />
           </div>
         </Col>
@@ -66,7 +65,10 @@ export default function ProductPage() {
                 </ListGroup.Item>
               )}
               <ListGroup.Item>Total Price: {1000}</ListGroup.Item>
-              <Button className="rounded-0"> Add To Card </Button>
+              <Button variant="dark" className="rounded-0">
+                {" "}
+                Add To Card{" "}
+              </Button>
             </ListGroup>
           </Card>
         </Col>

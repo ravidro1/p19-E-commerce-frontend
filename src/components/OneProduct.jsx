@@ -3,6 +3,7 @@ import { Button, Card, Placeholder } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import photoPlaceholder from "/photo_placeholder.jpg";
+import Rating from "./Rating";
 
 export default function OneProduct({ item }) {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function OneProduct({ item }) {
             <Card.Title>{item.name}</Card.Title>
             <Card.Text>{item.price.amount + item.price.currency}</Card.Text>
             <Card.Text>{item.description}</Card.Text>
-            <Card.Text>rate</Card.Text>
+            <Rating rate={item.rate} />
             <Button
               onClick={() => navigate(`product/${item.id}`, { state: item })}
               variant="dark"

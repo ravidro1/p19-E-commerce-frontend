@@ -12,6 +12,8 @@ import Header from "./components/Header";
 import { Container } from "react-bootstrap";
 import DataContextProvider from "./context/DataContextProvider";
 
+import "./style/styleImport";
+
 function App() {
   return (
     <DataContextProvider>
