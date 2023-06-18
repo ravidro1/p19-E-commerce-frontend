@@ -6,7 +6,7 @@ export default function Rating({ rate }) {
       {Array(5)
         .fill(0)
         .map((_, index) => {
-          console.log(rate);
+          // console.log(rate);
           const thisStarValue = rate - index;
 
           return (

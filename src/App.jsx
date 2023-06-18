@@ -13,6 +13,10 @@ import { Container } from "react-bootstrap";
 import DataContextProvider from "./context/DataContextProvider";
 
 import "./style/styleImport";
+import "./config/axios.config";
+import DefaultPage from "./pages/DefaultPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AutoNavigateRoute from "./components/AutoNavigateRoute";
 
 function App() {
   return (
@@ -31,12 +35,16 @@ function App() {
         <Container fluid className="w-100 h-100 p-0 m-0">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/cart" element={<Cart />} />
             <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="*" element={<></>} />
+            <Route element={<AutoNavigateRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
+            </Route>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path="*" element={<DefaultPage />} />
           </Routes>
         </Container>
       </main>
