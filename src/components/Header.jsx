@@ -5,7 +5,7 @@ import useDataContext from "../context/useDataContext";
 import axios from "axios";
 
 export default function Header() {
-  const { token, setToken } = useDataContext();
+  const { token, setToken, userData } = useDataContext();
 
   const logout = async () => {
     await axios.get("/user/logout");
@@ -60,7 +60,22 @@ export default function Header() {
               </>
             )}
           </Nav>
-          {token && <Button onClick={logout}>Logout</Button>}
+          {token && (
+            <>
+              <h5 className="my-auto mx-3" style={{ color: "#fff" }}>
+                Hello:{" "}
+                <strong
+                  className="mx-1"
+                  style={{ textTransform: "capitalize" }}
+                >
+                  {userData?.firstName + " " + userData?.lastName}
+                </strong>
+              </h5>
+              <Button variant="light" onClick={logout}>
+                Logout
+              </Button>
+            </>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
