@@ -11,20 +11,27 @@ export default function DataContextProvider({ children }) {
 
 function DataContext() {
   const [userData, setUserData] = useState(null);
+  const [userDataLoading, setUserDataLoading] = useState(false);
   const [token, setToken] = useState(null);
   const [tokenLoading, setTokenLoading] = useState(true);
   const navigate = useNavigate();
 
+  console.log(userData);
+
   useEffect(() => {
+    setUserDataLoading(true);
     getUserInfo();
   }, [token]);
 
   const getUserInfo = async () => {
     try {
       const { data } = await axios.get("/user/get-user-info");
+      console.log(data);
       setUserData(data.user);
     } catch (error) {
       console.error(error);
+    } finally {
+      setUserDataLoading(false);
     }
   };
 
@@ -45,10 +52,8 @@ function DataContext() {
     })();
   }, []);
 
-  console.log(userData);
-
   configAxios(token, refreshToken);
-  return { token, setToken, tokenLoading, navigate, userData };
+  return { token, setToken, tokenLoading, navigate, userData, userDataLoading };
 }
 
 const configAxios = (token, refreshToken) => {

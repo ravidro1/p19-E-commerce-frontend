@@ -18,7 +18,10 @@ export default function Header() {
         <LinkContainer to={"/"}>
           <Navbar.Brand>E-Commerce</Navbar.Brand>
         </LinkContainer>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          className="shadow-none"
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <LinkContainer to={"/"}>
@@ -39,6 +42,12 @@ export default function Header() {
                   <Nav.Link>
                     <i className="fas fa-solid fa-gears" />{" "}
                     <span className="mx-2"> Settings</span>{" "}
+                  </Nav.Link>
+                </LinkContainer>{" "}
+                <LinkContainer to={"/history"}>
+                  <Nav.Link>
+                    <i class="fa-sharp fa-solid fa-clock-rotate-left" />
+                    <span className="mx-2"> History</span>{" "}
                   </Nav.Link>
                 </LinkContainer>{" "}
               </>
@@ -71,7 +80,7 @@ export default function Header() {
                   {userData?.firstName + " " + userData?.lastName}
                 </strong>
               </h5>
-              <Button variant="light" onClick={logout}>
+              <Button className="m-2" variant="light" onClick={logout}>
                 Logout
               </Button>
             </>

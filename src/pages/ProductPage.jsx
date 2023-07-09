@@ -51,7 +51,11 @@ export default function ProductPage() {
                   <Row className="d-flex align-items-center">
                     <Col md={"auto"}>Qty: </Col>
                     <Col md={4} className="my-1">
-                      <Form.Control as={"select"} value={10}>
+                      <Form.Control
+                        className="shadow-none"
+                        as={"select"}
+                        value={10}
+                      >
                         {[...Array(10).keys()].map((num) => {
                           return (
                             <option key={num} value={num + 1}>
