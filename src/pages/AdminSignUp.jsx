@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
 import useDataContext from "../context/useDataContext";
 
 export default function AdminSignUp() {
@@ -14,6 +14,11 @@ export default function AdminSignUp() {
     lastName: "",
     adminCode: "",
   });
+  const [isErrorMessageShow, setIsErrorMessageShow] = useState(false);
+
+  useEffect(() => {
+    setIsErrorMessageShow(false);
+  }, [signUpData]);
 
   const submitSignUp = async (event) => {
     try {
@@ -31,17 +36,24 @@ export default function AdminSignUp() {
         lastName: "",
         adminCode: "",
       });
+      setIsErrorMessageShow(false);
 
       setToken(data.token);
       navigate("/");
     } catch (error) {
       console.error(error?.response?.data);
+      setIsErrorMessageShow(true);
     }
   };
 
   return (
     <div className="w-100 h-100 d-flex flex flex-column justify-content-around align-items-center">
-      <h1> Admin Register</h1>
+      <h1> Admin Register</h1>{" "}
+      {isErrorMessageShow && (
+        <Alert variant="danger" style={{ width: "40%" }}>
+          Error
+        </Alert>
+      )}
       <Form
         onSubmit={submitSignUp}
         style={{

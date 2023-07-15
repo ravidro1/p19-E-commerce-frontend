@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
 import useDataContext from "../context/useDataContext";
 import axios from "axios";
 
@@ -7,6 +7,12 @@ export default function Login() {
   const [inputData, setInputData] = useState({ email: "", password: "" });
 
   const { setToken, navigate, token } = useDataContext();
+
+  const [isErrorMessageShow, setIsErrorMessageShow] = useState(false);
+
+  useEffect(() => {
+    setIsErrorMessageShow(false);
+  }, [inputData]);
 
   const submitLogin = async (event) => {
     console.log(token);
@@ -23,14 +29,21 @@ export default function Login() {
 
       setToken(data.token);
       setInputData({ email: "", password: "" });
+      setIsErrorMessageShow(false);
       navigate("/");
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error);
+      setIsErrorMessageShow(true);
     }
   };
 
   return (
-    <div className="w-100 h-100 d-flex justify-content-center align-items-center">
+    <div className="w-100 h-100 d-flex justify-content-center align-items-center flex-column">
+      {isErrorMessageShow && (
+        <Alert variant="danger" style={{ width: "40%" }}>
+          Error
+        </Alert>
+      )}
       <Form
         onSubmit={submitLogin}
         style={{

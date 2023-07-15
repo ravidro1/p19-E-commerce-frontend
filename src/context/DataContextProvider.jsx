@@ -66,7 +66,7 @@ const configAxios = (token, refreshToken) => {
   axios.interceptors.response.use(
     (res) => res,
     async (error) => {
-      if (error.response.status == 401 && !refresh) {
+      if (error?.response?.status == 401 && !refresh) {
         refresh = true;
         await refreshToken();
         if (response.status == 200) return axios(error.config);

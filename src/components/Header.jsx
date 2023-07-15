@@ -27,7 +27,7 @@ export default function Header() {
             <LinkContainer to={"/"}>
               <Nav.Link>
                 <i className="fas fa-solid fa-shop" />
-                <span className="mx-2"> Shop</span>{" "}
+                <span className="mx-2"> Shop</span>
               </Nav.Link>
             </LinkContainer>
             {token && (
@@ -35,21 +35,32 @@ export default function Header() {
                 <LinkContainer to={"/cart"}>
                   <Nav.Link>
                     <i className="fas fa-shopping-cart" />
-                    <span className="mx-2"> Cart</span>{" "}
+                    <span className="mx-2"> Cart</span>
                   </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to={"/settings"}>
                   <Nav.Link>
-                    <i className="fas fa-solid fa-gears" />{" "}
-                    <span className="mx-2"> Settings</span>{" "}
+                    <i className="fas fa-solid fa-gears" />
+                    <span className="mx-2">Settings</span>
                   </Nav.Link>
-                </LinkContainer>{" "}
+                </LinkContainer>
                 <LinkContainer to={"/history"}>
                   <Nav.Link>
                     <i class="fa-sharp fa-solid fa-clock-rotate-left" />
-                    <span className="mx-2"> History</span>{" "}
+                    <span className="mx-2">History</span>
                   </Nav.Link>
-                </LinkContainer>{" "}
+                </LinkContainer>
+              </>
+            )}
+            {userData?.isAdmin && (
+              <>
+                {" "}
+                <LinkContainer to={"/inventory"}>
+                  <Nav.Link>
+                    <i class="fa-sharp fa-solid fa-warehouse" />{" "}
+                    <span className="mx-2">Inventory</span>
+                  </Nav.Link>
+                </LinkContainer>
               </>
             )}
             {!token && (
