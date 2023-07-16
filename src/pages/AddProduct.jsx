@@ -5,10 +5,10 @@ import { Alert, Button, Form } from "react-bootstrap";
 export default function AddProduct() {
   const [newProductData, setNewProductData] = useState({
     name: "",
-    description: "",
-    price: "",
-    quantity: "",
-    picURL: null,
+    description: null,
+    price: null,
+    quantity: null,
+    imageData: null,
   });
 
   const pictureRef = useRef();
@@ -63,7 +63,7 @@ export default function AddProduct() {
         <Form onSubmit={submitAddProduct}>
           <Form.Control
             size="lg"
-            value={newProductData.name}
+            value={newProductData.name == null ? "" : newProductData.name}
             onChange={(e) =>
               setNewProductData({ ...newProductData, name: e.target.value })
             }
@@ -72,7 +72,11 @@ export default function AddProduct() {
           />
           <Form.Control
             size="lg"
-            value={newProductData.description}
+            value={
+              newProductData.description == null
+                ? ""
+                : newProductData.description
+            }
             onChange={(e) =>
               setNewProductData({
                 ...newProductData,
@@ -84,7 +88,7 @@ export default function AddProduct() {
           />
           <Form.Control
             size="lg"
-            value={newProductData.price}
+            value={newProductData.price == null ? "" : newProductData.price}
             onChange={(e) =>
               setNewProductData({ ...newProductData, price: e.target.value })
             }
@@ -94,7 +98,9 @@ export default function AddProduct() {
           />
           <Form.Control
             size="lg"
-            value={newProductData.quantity}
+            value={
+              newProductData.quantity == null ? "" : newProductData.quantity
+            }
             onChange={(e) =>
               setNewProductData({ ...newProductData, quantity: e.target.value })
             }
@@ -109,7 +115,7 @@ export default function AddProduct() {
               uploadImage(
                 e,
                 (result) =>
-                  setNewProductData({ ...newProductData, picURL: result }),
+                  setNewProductData({ ...newProductData, imageData: result }),
                 () => {
                   if (pictureRef && pictureRef.current)
                     pictureRef.current.value = null;

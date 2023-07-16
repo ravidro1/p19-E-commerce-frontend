@@ -14,6 +14,9 @@ function DataContext() {
   const [userDataLoading, setUserDataLoading] = useState(false);
   const [token, setToken] = useState(null);
   const [tokenLoading, setTokenLoading] = useState(true);
+
+  const [products, setProducts] = useState([]);
+
   const navigate = useNavigate();
 
   console.log(userData);
@@ -44,16 +47,37 @@ function DataContext() {
     }
   };
 
+  const getAllProducts = async () => {
+    try {
+      const { data } = await axios.get("/product/getAll");
+      setProducts(data.products);
+    } catch (error) {
+      console.error(error);
+      setProducts([]);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       setTokenLoading(true);
       await refreshToken();
       setTokenLoading(false);
+      await getAllProducts();
     })();
   }, []);
 
   configAxios(token, refreshToken);
-  return { token, setToken, tokenLoading, navigate, userData, userDataLoading };
+
+  return {
+    token,
+    setToken,
+    tokenLoading,
+    navigate,
+    userData,
+    userDataLoading,
+    products,
+    setProducts,
+  };
 }
 
 const configAxios = (token, refreshToken) => {
@@ -69,7 +93,7 @@ const configAxios = (token, refreshToken) => {
       if (error?.response?.status == 401 && !refresh) {
         refresh = true;
         await refreshToken();
-        if (response.status == 200) return axios(error.config);
+        if (response?.status == 200) return axios(error?.config);
       }
       refresh = false;
 

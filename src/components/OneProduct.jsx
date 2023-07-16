@@ -9,6 +9,8 @@ export default function OneProduct({ item }) {
   const navigate = useNavigate();
 
   const loading = false;
+
+  const { id, name, description, picURL, price, quantity, rating } = item;
   return (
     <>
       {loading ? (
@@ -28,14 +30,16 @@ export default function OneProduct({ item }) {
         </Card>
       ) : (
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={item.pic} />
+          <Card.Img
+            variant="top"
+            src={picURL ? picURL : "/photo_placeholder.jpg"}
+          />
           <Card.Body className="d-flex flex-column justify-content-between">
-            <Card.Title>{item.name}</Card.Title>
-            <Card.Text>{item.price.amount + item.price.currency}</Card.Text>
-            <Card.Text>{item.description}</Card.Text>
-            <Rating rate={item.rate} />
+            <Card.Title>{name}</Card.Title>
+            <Card.Text>{price == null ? 0 : price} $</Card.Text>
+            <Rating rate={rating} />
             <Button
-              onClick={() => navigate(`product/${item.id}`, { state: item })}
+              onClick={() => navigate(`product/${id}`, { state: item })}
               variant="dark"
             >
               Go somewhere

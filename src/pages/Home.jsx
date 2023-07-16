@@ -5,6 +5,7 @@ import ShowProducts from "../components/ShowProducts";
 import axios from "axios";
 
 export default function Home() {
+  
   const [searchValue, setSearchValue] = useState("");
 
   return (

@@ -13,28 +13,28 @@ import Rating from "../components/Rating";
 
 export default function ProductPage() {
   const { state } = useLocation();
-  console.log(state);
+
+  const { id, name, description, picURL, quantity, price, rating } = state;
+
   return (
     <div className="w-100 h-100  p-4">
-      {/* <div
-        style={{ width: "80%", height: "90%", overflow: "hidden" }}
-        className="bg-info rounded-4"
-      > */}
       <Row
         style={{ backgroundColor: "#fff" }}
         className="overflow-hidden w-100 p-0 py-3 m-0 border rounded-4 d-flex "
       >
         <Col md={7} className="align-self-center">
-          <Image src={state.pic} alt={state.name} fluid />
+          <Image
+            src={picURL ? picURL : "/photo_placeholder.jpg"}
+            alt={name}
+            fluid
+          />
         </Col>
         <Col md={5} className="align-self-end">
           <div className="d-flex flex-column">
-            <h1> {state.name}</h1>
-            <p> {state.description} </p>
-            <h3>
-              {state.price.amount} {state.price.currency}
-            </h3>
-            <Rating rate={2.9} />
+            <h1> {name}</h1>
+            <p> {description} </p>
+            <h3>{price}</h3>
+            <Rating rate={rating} />
           </div>
         </Col>
         <Col className="my-3">
@@ -43,7 +43,14 @@ export default function ProductPage() {
               <ListGroup.Item>
                 <Row>
                   <Col md={"auto"}>Status: </Col>
-                  <Col md={"auto"}> {false ? "In Stock" : "Out Of Stock"} </Col>
+                  <Col md={"auto"}>
+                    {" "}
+                    {!quantity
+                      ? "Out Of Stock"
+                      : quantity < 5
+                      ? "Last Units"
+                      : "In Stock"}{" "}
+                  </Col>
                 </Row>
               </ListGroup.Item>
               {true && (
@@ -54,21 +61,25 @@ export default function ProductPage() {
                       <Form.Control
                         className="shadow-none"
                         as={"select"}
-                        value={10}
+                        value={1}
                       >
-                        {[...Array(10).keys()].map((num) => {
-                          return (
-                            <option key={num} value={num + 1}>
-                              {num + 1}
-                            </option>
-                          );
-                        })}
+                        {[...Array(Math.min(quantity, 20)).keys()].map(
+                          (num) => {
+                            return (
+                              <option key={num} value={num + 1}>
+                                {num + 1}
+                              </option>
+                            );
+                          }
+                        )}
                       </Form.Control>
                     </Col>
                   </Row>
                 </ListGroup.Item>
               )}
-              <ListGroup.Item>Total Price: {1000}</ListGroup.Item>
+              <ListGroup.Item>
+                Total Price: {price == null ? 0 : price} $
+              </ListGroup.Item>
               <Button variant="dark" className="rounded-0">
                 {" "}
                 Add To Card{" "}

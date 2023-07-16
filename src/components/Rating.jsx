@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Rating({ rate }) {
   return (
-    <div className="">
+    <div className="py-3">
       {Array(5)
         .fill(0)
         .map((_, index) => {
@@ -12,7 +12,7 @@ export default function Rating({ rate }) {
           return (
             <span key={index}>
               <i
-                style={{ color: "#f8e825" }}
+                style={{ color: "#f8e825", fontSize: "20px" }}
                 className={
                   thisStarValue >= 1
                     ? "fa-solid fa-star"
